@@ -246,6 +246,8 @@ print('Test loss:', loss)
 print('Test accuracy:', accuracy)
 
 
+print('Bla')
+
 failcount=0
 successcount = 0
 threshold = 0.9
