@@ -12,7 +12,7 @@ for idx in range(0, 2):
     X_train, Y_train = trainer.create_normalised_features(trainer.X_train_price, trainer.X_train_vp, trainer.X_train_gradient, trainer.Y_train)
 
     hidden_layers = (10, 40, 10)
-    #hidden_layers = (30, 30, 10)
+    hidden_layers = (40, 20, 10)
     trainer.train(trade_direction, X_train, Y_train, hidden_layers)
 
     trainer.load_features(trade_direction, '../testing/')
@@ -24,7 +24,7 @@ for idx in range(0, 2):
 
     failcount = 0
     successcount = 0
-    threshold = 0.9
+    threshold = 0.7
     for i in range(0, len(X_test)):
         output = trainer.predict(np.array([X_test[i]]))
         output = np.array(output)
