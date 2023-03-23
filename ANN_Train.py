@@ -16,7 +16,7 @@ for idx in range(0, 2):
 
     trainer.train(trade_direction, X_train, Y_train, hidden_layers, epochs=100)
 
-    trainer.load_features(trade_direction, '../training/')
+    trainer.load_features(trade_direction, '../testing/')
     X_test, Y_test = trainer.create_normalised_features(trainer.X_train_price, trainer.X_train_vp, trainer.X_train_gradient, trainer.Y_train)
 
     #loss, accuracy = trainer.evaluate(trade_direction, X_test, Y_test, hidden_layers)
