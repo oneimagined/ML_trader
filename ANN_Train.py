@@ -1,4 +1,4 @@
-from CommonClasses import VolumeProfileANN
+from VolumeProfileANN import VolumeProfileANN
 import numpy as np
 
 
@@ -10,16 +10,18 @@ for idx in range(0, 2):
     trade_direction = trade_directions[idx]
     trainer.load_features(trade_direction, '../training/', 'Train')
 
-    X_train, Y_train = trainer.create_normalised_features(trainer.X_train_price, trainer.X_train_vp, trainer.X_train_gradient, trainer.Y_train)
 
-    hidden_layers = (40, 20, 10)
+    X_train = np.array(trainer.generate_features())
+    Y_train = np.array(trainer.Y_train)
 
-    trainer.train(trade_direction, X_train, Y_train, hidden_layers, epochs=100)
+    hidden_layers = (10, 40, 8)
+
+    trainer.train(trade_direction, X_train, trainer.Y_train, hidden_layers, epochs=400)
 
     trainer.load_features(trade_direction, '../testing/')
-    X_test, Y_test = trainer.create_normalised_features(trainer.X_train_price, trainer.X_train_vp, trainer.X_train_gradient, trainer.Y_train)
 
-    #loss, accuracy = trainer.evaluate(trade_direction, X_test, Y_test, hidden_layers)
+    X_test = np.array(trainer.generate_features())
+    Y_test = np.array(trainer.Y_train)
 
     missed_count = 0
     losing_count = 0
